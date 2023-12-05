@@ -24,7 +24,10 @@ pageClass: device-page
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
-
+2023-20-05 - Recent update started generating following error
+Error 2023-12-05 11:15:30Publish 'set' 'occupied_heating_setpoint' to 'Hive Switch' failed: 'Error: 'occupied_heating_setpoint' is not a number, got string (30)'changed fromat of "occupied_heating_setpoint".
+Value as a string appears to no longer accepted. removed quotations from temp value to rectify
+Checked "Temperature setpoint hold" and "Temperature setpoint hold duration" both still working as strings
 
 ### Pairing
 
@@ -47,7 +50,7 @@ To start one, or modify an already active one, send the following payload to the
    "system_mode":"emergency_heating",
    "temperature_setpoint_hold_duration":"30",  // Replace with desired duration in minutes. Max 360. 0 to stop
    "temperature_setpoint_hold":"1",
-   "occupied_heating_setpoint":"18"  // Replace with desired temperature. Between 5 and 32 C
+   "occupied_heating_setpoint":18  // Replace with desired temperature. Between 5 and 32 C
 }
 ```
 Note: For device timing reasons, the payload needs to be sent as one single command. Sending individual commands or settings attributes manually using the Frontend will not work.
@@ -60,7 +63,7 @@ Send the following payload to the topic `zigbee2mqtt/FRIENDLY_NAME/set`:
 {
    "system_mode":"heat",
    "temperature_setpoint_hold":"1",
-   "occupied_heating_setpoint":"20" // Replace with desired temperature. Between 5 and 32 C
+   "occupied_heating_setpoint":20 // Replace with desired temperature. Between 5 and 32 C
 }
 ```
 Note: You will also notice that `temperature_setpoint_hold_duration` automatically changes to `65535` which means `undefined` (indefinite).
